@@ -1,0 +1,28 @@
+function countScores(scores: number[]): [number, number] {
+    if (scores.length === 0) {
+        throw new Error("No scores provided");
+    }
+
+    let maxScore = scores[0];
+    let minScore = scores[0];
+    let aboveMaxCount = 0;
+    let belowMinCount = 0;
+
+    scores.forEach(score => {
+        if (score > maxScore) {
+            maxScore = score;
+            aboveMaxCount++;
+        } else if (score < minScore) {
+            minScore = score;
+            belowMinCount++;
+        }
+    });
+
+    return [aboveMaxCount, belowMinCount];
+}
+
+const scores: number[] = [10, 5, 20, 20, 4, 5, 2, 25, 1];
+const [aboveMax, belowMin] = countScores(scores);
+
+console.log(`Number of times the score exceeded the maximum score: ${aboveMax}`);
+console.log(`Number of times the score fell below the minimum score: ${belowMin}`);
